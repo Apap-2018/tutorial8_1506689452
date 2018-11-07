@@ -21,9 +21,6 @@
                         Tambah User Baru
                     </div>
                     <div class="card-body">
-                    	<ul id="error-tambah-user" th:if="${errorFlagTambahUser}">
-                        	<li th:each="value : ${errorValueTambahUser}" th:text="${value}" style="color:red"></li>
-                    	</ul>
                         <form th:action="@{/user/addUser}" method="post">
                         	<div class="row form-group">
                         		<label class="col-sm-4">User Name</label>
