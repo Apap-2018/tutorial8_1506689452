@@ -6,6 +6,7 @@
 
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -20,6 +21,9 @@
                         Tambah User Baru
                     </div>
                     <div class="card-body">
+                    	<ul id="error-tambah-user" th:if="${errorFlagTambahUser}">
+                        	<li th:each="value : ${errorValueTambahUser}" th:text="${value}" style="color:red"></li>
+                    	</ul>
                         <form th:action="@{/user/addUser}" method="post">
                         	<div class="row form-group">
                         		<label class="col-sm-4">User Name</label>
@@ -27,7 +31,7 @@
                         	</div>
                         	<div class="row form-group">
                         		<label class="col-sm-4">Password:</label>
-                        		<input class="col-sm-8 form-control input-sm" type="password" name="password" />
+                        		<input class="col-sm-8 form-control input-sm" type="password" name="password" required pattern="(?=.*\d)(?=.*[a-zA-Z]).{8,}" title="Password harus mengandung angka dan huruf serta minimal 8 karakter" />
                         	</div>
                         	<div class="row form-group">
                         		<label class="col-sm-4">Role:</label>
@@ -66,6 +70,7 @@
                         <div class="card-body">
                             <label for="licenseNumber">License Number:</label>
                             <input type="text" name="licenseNumber" class="form-control" />
+                            <br>
                             <button type="submit" class="btn btn-primary">Cari</button>
                         </div>
                     </form>
